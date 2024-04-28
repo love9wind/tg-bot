@@ -21,7 +21,10 @@ Telegram 推送结果
 
 ## 说明
 
-使用方式同 [jckling/Daily-Bonus](https://github.com/jckling/Daily-Bonus)，star 一下，再 fork 本仓库设置 Secrets 就可以运行了，自定义推送时间修改 .github/workflows/ 目录下对应的配置文件即可。
+**支持本仓库请 star**
+
+使用方式同 [jckling/Daily-Bonus](https://github.com/jckling/Daily-Bonus)，fork 本仓库然后设置 Actions Secrets 就可以运行了。自定义推送时间修改 .github/workflows/ 目录下对应的配置文件即可，时间格式参考 [events-that-trigger-workflows#schedule](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule) 。
+
 
 | Secret 名称            | 描述                   |
 | --------------------- | --------------------- |
@@ -44,7 +47,13 @@ Bilibili 动态推送需要在 bilibili/uids.txt 添加 uid：
 
 # 相关链接
 
+参阅
 - [Bots: An introduction for developers](https://core.telegram.org/bots)
 - [python-telegram-bot](https://github.com/python-telegram-bot/python-telegram-bot)
 - [upbit/pixivpy](https://github.com/upbit/pixivpy)
 - [SK-415/HarukaBot](https://github.com/SK-415/HarukaBot)
+
+问题与解决
+- [How to Update All Python Packages - ActiveState](https://www.activestate.com/resources/quick-reads/how-to-update-all-python-packages/)
+- [python - RuntimeWarning: Enable tracemalloc to get the object allocation traceback - Not using async - Stack Overflow](https://stackoverflow.com/questions/75076069/runtimewarning-enable-tracemalloc-to-get-the-object-allocation-traceback-not)
+- [Coroutines and Tasks — Python 3.11.4 documentation](https://docs.python.org/3/library/asyncio-task.html)

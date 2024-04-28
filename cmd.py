@@ -4,6 +4,7 @@
 # @Author   : Jckling
 
 import argparse
+import asyncio
 
 from bilibili.updates import ups_updates
 from bing.wallpaper import explore_wallpaper
@@ -18,37 +19,45 @@ parser.add_argument('--daily_night', action='store_true', help='daily night task
 
 args = parser.parse_args()
 
-if args.daily:
-    # Bing 壁纸
-    image, info = explore_wallpaper()
-    bot.sendPhoto(
-        chat_id=CHAT_ID,
-        photo=image,
-        caption=info
-    )
 
-if args.weekly:
-    # Pixiv 插画周榜
-    lst = weekly_ranking()
-    bot.sendMediaGroup(
-        chat_id=CHAT_ID,
-        media=lst
-    )
+async def main():
+    try:
+        if args.daily:
+            # Bing 壁纸
+            image, info = explore_wallpaper()
+            await bot.sendPhoto(
+                chat_id=CHAT_ID,
+                photo=image,
+                caption=info
+            )
 
-if args.daily_night:
-    # Yamibo 中文漫画更新
-    msg = yuri_manga()
-    bot.sendMessage(
-        chat_id=CHAT_ID,
-        text=msg,
-        parse_mode="HTML"
-    )
+        if args.weekly:
+            # Pixiv 插画周榜
+            lst = weekly_ranking()
+            await bot.sendMediaGroup(
+                chat_id=CHAT_ID,
+                media=lst
+            )
 
-    # Bilibili 动态更新
-    msg = ups_updates()
-    bot.sendMessage(
-        chat_id=CHAT_ID,
-        text=msg,
-        parse_mode="HTML",
-        disable_web_page_preview=True
-    )
+        if args.daily_night:
+            # Yamibo 中文漫画更新
+            msg = yuri_manga()
+            await bot.sendMessage(
+                chat_id=CHAT_ID,
+                text=msg,
+                parse_mode="HTML"
+            )
+
+            # Bilibili 动态更新
+            msg = ups_updates()
+            await bot.sendMessage(
+                chat_id=CHAT_ID,
+                text=msg,
+                parse_mode="HTML",
+                disable_web_page_preview=True
+            )
+    except Exception as e:
+        print("Error: %s" % e)
+
+
+asyncio.run(main())
